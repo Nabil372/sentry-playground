@@ -25,16 +25,11 @@ await esbuild.build({
         // this options bundles .node binaries with the rest of the code
         ".node": "file",
     },
-    // using banner as instructed by this:
-    // - https://github.com/evanw/esbuild/issues/1944#issuecomment-1936954345
-    banner: {
-        js: `\
-import { fileURLToPath } from 'node:url';
-import { dirname as topLevelDirname } from 'node:path';
-import { createRequire as topLevelCreateRequire } from 'node:module';
-
-const require = topLevelCreateRequire(import.meta.url);
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = topLevelDirname(__filename);`,
-    },
+    // unfortunately, using the banner hack to get around:
+    // https://github.com/evanw/esbuild/issues/1944#issuecomment-1936954345
+    // "Error: Dynamic require of * is not supported"
+    // doesn't seem to work well with sentry. see:
+    // https://github.com/getsentry/sentry-javascript/issues/12056#issuecomment-2125090679.
+    // So have just resorted to using externals
+    external: ["express", "@sentry/node"],
 })

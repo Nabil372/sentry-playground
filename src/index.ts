@@ -1,11 +1,11 @@
-import "./instrument";
-
 import * as Sentry from "@sentry/node";
 import express from "express";
 
 const app = express();
+app.use(express.json());
 
-app.get("/", function rootHandler(_req, res) {
+app.post("/", function rootHandler(req, res) {
+    console.log(req.body);
     res.end("OK")
 });
 app.get("/debug-sentry", function mainHandler(_req, _res) {

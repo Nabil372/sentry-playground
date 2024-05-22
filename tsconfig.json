@@ -23,7 +23,7 @@
     // https://www.totaltypescript.com/build-a-node-app-with-typescript-and-esbuild
     "moduleResolution": "Bundler",
     // tsc does not emit js code, just does type checking
-    "noEmit": true,
+    // "noEmit": true,
     "lib": [
       // using ES2023 because of https://www.npmjs.com/package/@tsconfig/node20
       "ES2023"
