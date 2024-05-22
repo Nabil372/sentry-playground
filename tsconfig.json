@@ -1,0 +1,38 @@
+// https://www.totaltypescript.com/tsconfig-cheat-sheet
+{
+  "compilerOptions": {
+    // -- base options:
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    // "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    // -- ts strictness:
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
+    // -- ts transpiling options:
+    // exlanation of NodeNext:
+    // - https://fireship.io/lessons/typescript-nodejs-setup/
+    "module": "ESNext",
+    // using esbuild as the code bundler:
+    // https://www.totaltypescript.com/build-a-node-app-with-typescript-and-esbuild
+    "moduleResolution": "Bundler",
+    // tsc does not emit js code, just does type checking
+    "noEmit": true,
+    "lib": [
+      // using ES2023 because of https://www.npmjs.com/package/@tsconfig/node20
+      "ES2023"
+    ],
+    // makes debugging easier as we can see which js files map to which ts filea
+    "sourceMap": true,
+    "outDir": "dist",
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
