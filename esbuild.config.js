@@ -1,6 +1,14 @@
-import * as esbuild from 'esbuild'
+import * as esbuild from 'esbuild';
+import { sentryEsbuildPlugin } from "@sentry/esbuild-plugin";
 
 await esbuild.build({
+    plugins: [
+        sentryEsbuildPlugin({
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+            org: process.env.SENTRY_ORG_NAME,
+            project: process.env.SENTRY_PROJ_NAME,
+        }),
+    ],
     entryPoints: ['src/index.ts'],
     bundle: true,
     minify: true,
