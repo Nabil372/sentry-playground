@@ -11,7 +11,7 @@
     "build:tsc": "rm -rf dist/ && tsc",
     "start": "node --env-file .env --import ./src/instrument.mjs dist/index.mjs",
     "start:tsc": "node --env-file .env --import ./src/instrument.mjs dist/index.js",
-    "dev": "tsx watch --clear-screen=false src/index.ts",
+    "dev": "tsx watch --clear-screen=false --env-file .env --import ./src/instrument.mjs src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },

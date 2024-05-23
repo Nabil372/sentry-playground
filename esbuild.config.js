@@ -1,12 +1,18 @@
-import * as esbuild from 'esbuild';
+import esbuild from 'esbuild';
 import { sentryEsbuildPlugin } from "@sentry/esbuild-plugin";
+
+
+const { SENTRY_AUTH_TOKEN, SENTRY_ORG_NAME, SENTRY_PROJ_NAME } = process.env;
+if (!SENTRY_AUTH_TOKEN || !SENTRY_ORG_NAME || !SENTRY_PROJ_NAME) {
+    throw new Error("'SENTRY_AUTH_TOKEN', 'SENTRY_ORG_NAME', 'SENTRY_PROJ_NAME' must be set");
+}
 
 await esbuild.build({
     plugins: [
         sentryEsbuildPlugin({
-            authToken: process.env.SENTRY_AUTH_TOKEN,
-            org: process.env.SENTRY_ORG_NAME,
-            project: process.env.SENTRY_PROJ_NAME,
+            authToken: SENTRY_AUTH_TOKEN,
+            org: SENTRY_ORG_NAME,
+            project: SENTRY_PROJ_NAME,
         }),
     ],
     entryPoints: ['src/index.ts'],
@@ -23,7 +29,7 @@ await esbuild.build({
     outfile: "dist/index.mjs",
     loader: {
         // this options bundles .node binaries with the rest of the code
-        ".node": "file",
+        ".node": "copy",
     },
     // unfortunately, using the banner hack to get around:
     // https://github.com/evanw/esbuild/issues/1944#issuecomment-1936954345
