@@ -1,20 +1,20 @@
 import esbuild from 'esbuild';
-import { sentryEsbuildPlugin } from "@sentry/esbuild-plugin";
+// import { sentryEsbuildPlugin } from "@sentry/esbuild-plugin";
 
 
-const { SENTRY_AUTH_TOKEN, SENTRY_ORG_NAME, SENTRY_PROJ_NAME } = process.env;
-if (!SENTRY_AUTH_TOKEN || !SENTRY_ORG_NAME || !SENTRY_PROJ_NAME) {
-    throw new Error("'SENTRY_AUTH_TOKEN', 'SENTRY_ORG_NAME', 'SENTRY_PROJ_NAME' must be set");
-}
+// const { SENTRY_AUTH_TOKEN, SENTRY_ORG_NAME, SENTRY_PROJ_NAME } = process.env;
+// if (!SENTRY_AUTH_TOKEN || !SENTRY_ORG_NAME || !SENTRY_PROJ_NAME) {
+//     throw new Error("'SENTRY_AUTH_TOKEN', 'SENTRY_ORG_NAME', 'SENTRY_PROJ_NAME' must be set");
+// }
 
 await esbuild.build({
-    plugins: [
-        sentryEsbuildPlugin({
-            authToken: SENTRY_AUTH_TOKEN,
-            org: SENTRY_ORG_NAME,
-            project: SENTRY_PROJ_NAME,
-        }),
-    ],
+    // plugins: [
+    //     sentryEsbuildPlugin({
+    //         authToken: SENTRY_AUTH_TOKEN,
+    //         org: SENTRY_ORG_NAME,
+    //         project: SENTRY_PROJ_NAME,
+    //     }),
+    // ],
     entryPoints: ['src/index.ts'],
     bundle: true,
     minify: true,
