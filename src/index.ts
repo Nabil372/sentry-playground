@@ -11,9 +11,13 @@ app.post("*", async function rootHandler(req, res) {
         path: req.path,
     };
 
-    console.log(data);
+    console.log(JSON.stringify(data, null, 2));
 
     res.sendStatus(202);
 });
 
-app.listen(3000);
+const appPort = 3000;
+app.listen(appPort, () => {
+    console.log(`listening on port ${appPort}`);
+});
+
