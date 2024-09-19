@@ -16,7 +16,7 @@ app.post("*", async function rootHandler(req, res) {
     res.sendStatus(202);
 });
 
-const appPort = 3000;
+const appPort = 3001;
 app.listen(appPort, () => {
     console.log(`listening on port ${appPort}`);
 });
